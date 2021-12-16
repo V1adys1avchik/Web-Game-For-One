@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Game";
+}
+
+<div>
+    <div style="float: left; width: 70%">
+        @foreach (var str in ViewBag.Message)
+        {
+            <h3 style="font-size: 25px; text-align: left">
+                @str
+            </h3>
+        }
+    </div>
+    <div style="float: left; width: 30%">
+        <div style="float: right; font-size: 25px; display: flex; height: 200px; align-items: center; align-content: center">
+            <button id="Start" type="button"onclick="location.href = '@Url.Action("Start","Game")'" style="color: white; background-color: black; width: 200px; height: 100px">
+                Start Game
+            </button>
+        </div>
+        <div style="float: right; font-size: 25px; display: flex; height: 100px; align-items: center; align-content: center">
+            <button id="Rules" type="button" onclick="location.href = '@Url.Action("Rules","Home")'" style="color: white; background-color: black; width: 200px; height: 100px">
+                Rules
+            </button>
+        </div>
+    </div>
+    <img src="~/Resources/city.png" width="100%" height="800px"/>
+</div>

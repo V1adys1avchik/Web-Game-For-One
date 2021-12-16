@@ -1,0 +1,50 @@
+﻿@model Web_Ankh_Mork.DB.Entity.Assasin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Assasin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HighestReward)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HighestReward)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LowestReward)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LowestReward)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOcupied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOcupied)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

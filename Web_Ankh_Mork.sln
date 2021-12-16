@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_Ankh_Mork", "Web_Ankh_Mork\Web_Ankh_Mork.csproj", "{46FCE4A2-7085-4935-BA78-DAEAA0BA0BC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46FCE4A2-7085-4935-BA78-DAEAA0BA0BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46FCE4A2-7085-4935-BA78-DAEAA0BA0BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46FCE4A2-7085-4935-BA78-DAEAA0BA0BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46FCE4A2-7085-4935-BA78-DAEAA0BA0BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {017AA788-A84A-4826-8541-467C7B6EDE4B}
+	EndGlobalSection
+EndGlobal

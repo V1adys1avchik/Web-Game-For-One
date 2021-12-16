@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Rules";
+}
+<h2>@ViewBag.Title.</h2>
+<div>
+    <div style="float: left; width: 60%">
+        <img src="~/Resources/NightCity.jpg" width="100%" />
+    </div>
+    <div style="float: left; width: 40%">
+        <ul>
+            @foreach (var r in ViewBag.Message)
+            {
+                <li style="font-size: 25px">
+                    @r
+                </li>
+            }
+        </ul>
+        <div style="margin: 5%; padding: 5%">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#designationsModal" style="height: 160px; width: 160px"><img src="~/Resources/List.ico" width="100%" height="100%" /></button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="designationsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Designations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 100%; width: 100%;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <img src="~/Resources/gui_user_ninja_icon_157555.ico" height="10%" width="10%" />
+                        <h5>Assassin. You can conclude a contract or skip (death). You can give more than max reward. Give too little - (death)</h5>
+                    </div>
+                    <div class="row">
+                        <img src="~/Resources/homeless_avatar_beggar_poor_poverty_icon_196512.ico" height="10%" width="10%" />
+                        <h5>Beggar. Asks for money (you can give) or skip (death).</h5>
+                    </div>
+                    <div class="row">
+                        <img src="~/Resources/beer_3630.ico" height="10%" width="10%" />
+                        <h5>Bar. You can buy beer (max 2) or skip. Later it can save your life.</h5>
+                    </div>
+                    <div class="row">
+                        <img src="~/Resources/thief_criminal_crime_icon_191273.ico" height="10%" width="10%" />
+                        <h5>Thief. You can give fee or skip and be imprisoned for years (death).</h5>
+                    </div>
+                    <div class="row">
+                        <img src="~/Resources/wanted_poster_reward_icon_191237.ico" height="10%" width="10%" />
+                        <h5>Contract. It is concluded with an assassin at an average cost of work.</h5>
+                    </div>
+                    <div class="row">
+                        <img src="~/Resources/3792042-clown-halloween-it-pennywise_109005.ico" height="10%" width="10%" />
+                        <h5>Fool. Your friend who can help make money or Skip.</h5>
+                    </div>
+                </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

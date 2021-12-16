@@ -1,0 +1,186 @@
+﻿@using Web_Ankh_Mork.BL.Items
+@using Web_Ankh_Mork.BL.NPCsType
+@model Web_Ankh_Mork.Models.GameViewModel
+@{
+    ViewBag.Title = "Start";
+}
+<div>
+    <h2>
+        Balance: @Model.answerModel.PlayerMoney
+        <img src="~/Resources/game_crown_queen_king_game_leaderboard_icon_133743 (1).ico" height="5%" width="5%" />
+    </h2>
+    <h2>Beer: @Model.answerModel.Beer (max 2)</h2>
+    <h3>You meet: @Model.AppearModel.Intro</h3>
+    @if (@Model.AppearModel.NpcRole == NPC.Bar)
+    {
+        <h3>You can buy Beer for @Model.AppearModel.Item</h3>
+        <img src="~/Resources/beer_3630.ico" />
+    }
+    @if (@Model.AppearModel.NpcRole == NPC.Fool)
+    {
+        <h3>He can pay you: @Model.AppearModel.ItemType</h3>
+        <h3>Money: @Model.AppearModel.Item</h3>
+        <img src="~/Resources/3792042-clown-halloween-it-pennywise_109005.ico" />
+    }
+    @if (@Model.AppearModel.NpcRole == NPC.Assasin)
+    {
+        <h3>He come to kill you</h3>
+        <img src="~/Resources/gui_user_ninja_icon_157555.ico" />
+    }
+    @if (@Model.AppearModel.NpcRole == NPC.Beggar)
+    {
+        <h3>He want: @Model.AppearModel.ItemType</h3>
+        <img src="~/Resources/homeless_avatar_beggar_poor_poverty_icon_196512.ico" />
+    }
+    @if (@Model.AppearModel.NpcRole == NPC.Thief)
+    {
+        <h3>He want: @Model.AppearModel.ItemType</h3>
+        <img src="~/Resources/thief_criminal_crime_icon_191273.ico" />
+    }
+    @if (@Model.AppearModel.ItemType == Item.Money && @Model.AppearModel.NpcRole != NPC.Fool)
+    {
+        <h3>Need money: @Model.AppearModel.Item</h3>
+    }
+
+    @*по идее можно хранить еще ссылку на ресурс(иконки) для каждого что б потом не было столько if *@
+</div>
+<div>
+    <div style="float: left; width: 70%">
+        <h3 style="font-size: 25px; text-align: left">
+        </h3>
+    </div>
+    <div style="float: left; width: 30%">
+        <div style="float: right; font-size: 25px; display: flex; height: 100px; align-items: center; align-content: center">
+            @*tyt*@
+            @using (Html.BeginForm("Skip", "Game", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.HiddenFor(a => a.AppearModel.NpcRole)
+                @Html.HiddenFor(a => a.answerModel.PlayerMoney)
+                @Html.HiddenFor(a => a.AppearModel.ItemType)
+                @Html.HiddenFor(a => a.AppearModel.Intro)
+                @Html.HiddenFor(a => a.answerModel.Alive)
+                @Html.HiddenFor(a => a.answerModel.Beer)
+                @Html.HiddenFor(a => a.AppearModel.Item)
+                @Html.HiddenFor(a => a.answerModel.Money)
+                @Html.HiddenFor(a => a.AppearModel.MinMoney)
+                @*Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+                <input value="Skip" type="submit" style="color: white; background-color: black; width: 200px; height: 100px" />
+            </div>
+            }
+        </div>
+        <div style="float: right; font-size: 25px; display: flex; height: 150px; align-items: center; align-content: center">
+            @if (@Model.AppearModel.NpcRole == NPC.Assasin)
+            {
+                <button id="Contract" type="button" data-toggle="modal" data-target="#ContractModal" style="color: white; background-color: black; width: 200px; height: 100px">
+                    Contract
+                </button>
+            }
+            @if (@Model.AppearModel.NpcRole != NPC.Assasin)
+            {
+                @*tyt*@
+                using (Html.BeginForm("Acceptp", "Game", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        
+                        @Html.Hidden("AppearModel.NpcRole", @Model.AppearModel.NpcRole)
+                        @Html.Hidden("AppearModel.Intro", @Model.AppearModel.Intro)
+                        @Html.Hidden("AppearModel.Item", @Model.AppearModel.Item)
+                        @Html.Hidden("AppearModel.ItemType", @Model.AppearModel.ItemType)
+                        @Html.Hidden("answerModel.PlayerMoney", @Model.answerModel.PlayerMoney)
+                        @Html.Hidden("answerModel.Alive", @Model.answerModel.Alive)
+                        @Html.Hidden("answerModel.Beer", @Model.answerModel.Beer)
+                        @Html.Hidden("answerModel.Money", @Model.answerModel.Money)
+                        @Html.Hidden("answerModel.Money", @Model.answerModel.Money)
+                        @Html.Hidden("answerModel.Money", @Model.answerModel.Money)
+                        @Html.Hidden("answerModel.Money", @Model.answerModel.Money)
+                        @Html.Hidden("AppearModel.MinMoney", @Model.AppearModel.MinMoney)
+                        @*Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+                        <input value="Accept" type="submit" style="color: white; background-color: black; width: 200px; height: 100px" />
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <img src="~/Resources/city.png" width="100%" height="800px" />
+</div>
+<div class="modal fade" id="ContractModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Contract</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Acceptp", "Game", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.HiddenFor(a => a.AppearModel.NpcRole)
+                        @Html.HiddenFor(a => a.answerModel.PlayerMoney)
+                        @Html.HiddenFor(a => a.AppearModel.ItemType)
+                        @Html.HiddenFor(a => a.AppearModel.Intro)
+                        @Html.HiddenFor(a => a.answerModel.Alive)
+                        @Html.HiddenFor(a => a.answerModel.Beer)
+                        @Html.HiddenFor(a => a.AppearModel.Item)
+                        @Html.HiddenFor(a => a.AppearModel.MinMoney)
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            Recomended: @Model.AppearModel.Item $
+                            <div class="col-md-10">
+                                @Html.EditorFor(a => a.answerModel.Money, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(a => a.answerModel.Money, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <img src="~/Resources/wanted_poster_reward_icon_191237.ico" />
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create Contract" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Skip", "Game", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                     <div class="form-horizontal">
+
+                         @Html.HiddenFor(a => a.AppearModel.NpcRole)
+                         @Html.HiddenFor(a => a.answerModel.PlayerMoney)
+                         @Html.HiddenFor(a => a.AppearModel.ItemType)
+                         @Html.HiddenFor(a => a.AppearModel.Intro)
+                         @Html.HiddenFor(a => a.answerModel.Alive)
+                         @Html.HiddenFor(a => a.answerModel.Beer)
+                         @Html.HiddenFor(a => a.AppearModel.Item)
+                         @Html.HiddenFor(a => a.answerModel.Money)
+                         @Html.HiddenFor(a => a.AppearModel.MinMoney)
+                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                         <input value="Skip" type="submit" class="btn btn-secondary" />
+                     </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
