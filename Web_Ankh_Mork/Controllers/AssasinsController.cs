@@ -16,7 +16,7 @@ namespace Web_Ankh_Mork.Controllers
     {
         private AnkhMorokContext db = new AnkhMorokContext();
 
-        // GET: Assasins
+        
         public ActionResult Index()
         {
             return View(db.Assasins.ToList());
