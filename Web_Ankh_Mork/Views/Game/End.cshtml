@@ -1,0 +1,17 @@
+﻿@model Web_Ankh_Mork.Models.GameViewModel
+@{
+    ViewBag.Title = "End";
+}
+
+<div>
+    <div style="float: left; width: 20%">
+        <div style="font-size: 25px; text-align: left">
+            <h2>End Game;</h2>
+            <h3>You Died;</h3>
+            <h3>Your Balance: @Model.answerModel.PlayerMoney</h3>
+        </div>
+    </div>
+    <div style="float: left; width: 80%">
+        <img src="~/Resources/Poster1.ico" height="150"  onclick="location.href = '@Url.Action("Index","Home")'"/>
+    </div>
+</div>
