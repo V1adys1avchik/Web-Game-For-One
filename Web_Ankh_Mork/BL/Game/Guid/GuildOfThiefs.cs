@@ -12,7 +12,6 @@ namespace Web_Ankh_Mork.BL.Game.Guid
     public class GuildOfThiefs : IGuild
     {
         public static int thefts = 6;
-       // private 
         public static void ResetThefts()
         {
             thefts = 6;

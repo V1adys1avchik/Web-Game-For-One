@@ -12,36 +12,42 @@ namespace Web_Ankh_Mork.Controllers
 {
     public class GameController : Controller
     {
-        private static GameViewModel _gameModel; // играть будет только 1-н )
+        private Game _game;
+        private GameViewModel _gameModel; 
 
         // GET: Game
         public ActionResult Start()
         {
+            _game = new Game();
             _gameModel = new GameViewModel();
             _gameModel.AppearModel = new AppearModel();
             _gameModel.answerModel = new AnswerModel();
             _gameModel.answerModel.Alive = true;
             _gameModel.answerModel.PlayerMoney = 100;
-            Game.ContinueGame(_gameModel);
 
+            _game.ContinueGame(_gameModel);
 
-                return View("Starts",_gameModel);
+            Session["Game"] = _gameModel;
+            var gModel = Session["Game"] as GameViewModel;
+
+            return View("Starts",gModel);
         }
 
         public ActionResult Starts()
         {
-            return View(_gameModel);
+            return View(Session["Game"] as GameViewModel);
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Acceptp(GameViewModel gameModel)
+        public ActionResult Accept(GameViewModel gameModel)
         {
-            Game.ResultOfChoise(gameModel);
+            _game = new Game();
+            _game.ResultOfChoise(gameModel);
             if (gameModel.answerModel.Alive)
             {
-                Game.Accept(gameModel);
-                _gameModel = gameModel;
+                _game.Accept(gameModel);
+                Session["Game"] = gameModel;
                 return RedirectToAction("Starts");
             }
             
@@ -52,6 +58,7 @@ namespace Web_Ankh_Mork.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Skip(GameViewModel gameModel)
         {
+            _game = new Game();
             if (gameModel.AppearModel.NpcRole == NPC.Assasin
                 || gameModel.AppearModel.NpcRole == NPC.Beggar
                 || gameModel.AppearModel.NpcRole == NPC.Thief)
@@ -60,10 +67,10 @@ namespace Web_Ankh_Mork.Controllers
                 return View("End", gameModel);
             }
 
-            Game.Skip(gameModel);
+            _game.Skip(gameModel);
             if (gameModel.answerModel.Alive)
             {
-                _gameModel = gameModel;
+                Session["Game"] = gameModel;
                 return RedirectToAction("Starts");
             }
 

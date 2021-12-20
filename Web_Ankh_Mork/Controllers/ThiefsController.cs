@@ -11,7 +11,7 @@ using Web_Ankh_Mork.DB.Entity;
 
 namespace Web_Ankh_Mork.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ThiefsController : Controller
     {
         private AnkhMorokContext db = new AnkhMorokContext();

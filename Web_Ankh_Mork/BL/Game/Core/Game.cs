@@ -14,24 +14,22 @@ namespace Web_Ankh_Mork.BL.Game
 {
     public class Game
     {
-        private static IGuild guild;
-        public static GameViewModel ContinueGame(GameViewModel model)
+        private  IGuild guild;
+        public  GameViewModel ContinueGame(GameViewModel model)
         {
             Processed(model);
 
             return model;
         }
 
-        public static GameViewModel Skip(GameViewModel model)
+        public  GameViewModel Skip(GameViewModel model)
         {
             Processed(model);
 
             return model;
         }
-        public static GameViewModel Accept(GameViewModel model)
+        public  GameViewModel Accept(GameViewModel model)
         {
-            //TODO: add method to add or decrease money
-            //ResultOfChoise(model);
 
             if (!model.answerModel.Alive)
             {
@@ -43,7 +41,7 @@ namespace Web_Ankh_Mork.BL.Game
             return model;
         }
 
-        private static void Processed(GameViewModel model)
+        private  void Processed(GameViewModel model)
         {
             guild = Place.GetRandomPlace();
             if (guild == null)
@@ -56,7 +54,7 @@ namespace Web_Ankh_Mork.BL.Game
             }
         }
 
-        public static void ResultOfChoise(GameViewModel model)
+        public  void ResultOfChoise(GameViewModel model)
         {
             if (MyBar.BuyBeer(model) && model.AppearModel.NpcRole == NPC.Bar)
             {
